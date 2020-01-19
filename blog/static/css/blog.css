@@ -15,12 +15,19 @@ body {
     padding: 20px 20px 20px 40px;
 }
 
+.list_header {
+    font-family: 'Playfair Display', serif;
+    color:  #111111;
+    font-size: 40pt;
+    margin-left: 150px;
+}
+
+
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
     color: #ffffff;
     font-size: 36pt;
     text-decoration: none;
     margin-left: 190px;
-
 }
 
 .content {

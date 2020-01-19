@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class='list_header'>
+    <h1>Список Блогов</h1>
+</div>
+{% if user.is_authenticated %}
+    <div class='new_object'>
+        <h1><a href="{% url 'blog_new'%}">++++++++</a></h1>
+    </div>
+{%endif%}
+
+{% for blog in blogs %}
+    <div class="post">
+        <h1><a href="{% url 'blog_detail' pk=blog.pk %}">{{ blog.title}}</a></h1>
+        <p>{{ blog.text|linebreaksbr }}</p>
+        <div class="date">
+            <p>Опубликовано: {{ blog.created_date }}</p>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}
