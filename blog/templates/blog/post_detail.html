@@ -16,4 +16,35 @@
         <p>{{ post.text|linebreaksbr }}</p>
         </div>
     </div>
+
+    <div>
+
+        {% if comments %}
+            <h3 class="comment__title">Комментарии</h3>
+            {% for comm in comments %}
+                <div class="comment">
+                    <h3>
+                        Пользователь: {{ comm.author}}
+                    </h3>
+                    <h4><a href="{% url 'comment_detail' pk=comm.pk %}">
+                        {{ comm.text|linebreaksbr}}
+                    </a></h4>
+                    <h5>Дата публикации: {{comm.created_date}}</h5>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div>
+            <form method="POST">{% csrf_token %}
+                {% if user.is_authenticated %}
+                <div class="card">
+                    <div class="card-body">
+                        <p><input type="text" class="form-control" placeholder='Добавить комментарий' name="text"></p>
+                        {{form.as_p}}
+                        <button type="submit" class="btn btn-primary">Добавить</button>
+                    </div>
+                </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
 {% endblock %}

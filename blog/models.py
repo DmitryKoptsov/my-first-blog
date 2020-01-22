@@ -27,7 +27,7 @@ class Post(models.Model):
         Blog,
         on_delete=models.CASCADE,
         verbose_name="Блог",
-        db_index=True
+        db_index=True,default=1
     )
 
     def publish(self):
@@ -37,3 +37,27 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+class Comments(models.Model):
+
+    class Meta:
+        ordering = ["created_date"]
+        verbose_name = "Комменты"
+        verbose_name_plural = "Комменты"
+
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    text = models.TextField(max_length=140, null=True)
+    created_date = models.DateTimeField(default=timezone.now)
+
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE,
+        verbose_name="Пост"
+    )
+
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
+
+    def __str__(self):
+        return self.text

@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<h3 class="comment__title">Комментарии к посту {{post_title}}</h3>
+<div class="comment">
+    <h3>
+        Пользователь: {{ comment.author}}
+    </h3>
+    <h4>{{ comment.text|linebreaksbr}}</h4>
+    <h5>Дата публикации: {{comment.created_date}}</h5>
+</div>
+{% endblock %}

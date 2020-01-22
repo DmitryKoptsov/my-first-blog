@@ -22,4 +22,9 @@
     </div>
 </div>
 {% endfor %}
+{% if user.is_authenticated %}
+    <div class='new_object'>
+        <h1><a href="{% url 'post_new' pk=blog.pk%}">++++++++</a></h1>
+    </div>
+{%endif%}
 {% endblock %}
