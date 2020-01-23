@@ -64,7 +64,7 @@ def blog_detail(request,pk):
 def blog_edit(request, pk):
     blog = get_object_or_404(Blog, pk=pk)
     if request.method == "POST":
-        form = BlogForm(request.BLOG, instance=blog)
+        form = BlogForm(request.POST, instance=blog)
         if form.is_valid():
             blog = form.save(commit=False)
             blog.author = request.user
@@ -107,3 +107,17 @@ def comment_detail(request,pk):
     comment = get_object_or_404(Comments, pk=pk)
     post = comment.post
     return render(request, 'blog/comment_detail.html', {'comment':comment,'post_title':post.title})
+
+def comment_edit(request,pk):
+    comment = get_object_or_404(Comments, pk=pk)
+    if request.method == "POST":
+        form = CommentsForm(request.POST, instance=comment)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.create_date = timezone.now()
+            comment.save()
+            return redirect('post_detail', pk=comment.post.pk)
+    else:
+        form = CommentsForm(instance=comment)
+    return render(request, 'blog/comment_edit.html', {'form': form})

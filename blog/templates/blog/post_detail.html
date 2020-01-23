@@ -26,7 +26,7 @@
                     <h3>
                         Пользователь: {{ comm.author}}
                     </h3>
-                    <h4><a href="{% url 'comment_detail' pk=comm.pk %}">
+                    <h4><a href="{% url 'comment_detail' pk=comm.pk%}">
                         {{ comm.text|linebreaksbr}}
                     </a></h4>
                     <h5>Дата публикации: {{comm.created_date}}</h5>

@@ -11,4 +11,6 @@ urlpatterns = [
     path('blog/<int:pk>/edit/', views.blog_edit, name='blog_edit'),
     path('blog/new/', views.blog_new, name='blog_new'),
     path('comment/<int:pk>/', views.comment_detail, name='comment_detail'),
+    path('comment/<int:pk>/edit', views.comment_edit, name='comment_edit'),
+
 ]
